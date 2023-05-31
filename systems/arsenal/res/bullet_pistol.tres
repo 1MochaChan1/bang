@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Bullet" load_steps=4 format=3 uid="uid://cjb17g1e1sa5x"]
+
+[ext_resource type="Script" path="res://resources/bullet.gd" id="1_3wabf"]
+[ext_resource type="Texture2D" uid="uid://u54lqa0773sj" path="res://assets/textures/guns.png" id="2_clfxr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nl43"]
+atlas = ExtResource("2_clfxr")
+region = Rect2(0, 16, 16, 16)
+
+[resource]
+script = ExtResource("1_3wabf")
+knockback = 1000.0
+speed = 500.0
+sprite = SubResource("AtlasTexture_3nl43")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dahtgnrmo7bhx"]
+
+[ext_resource type="Script" path="res://systems/arsenal/weapon.gd" id="1_78naq"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_78naq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="BulletSpawner" type="Node2D" parent="."]
+position = Vector2(10, -3)
+
+[node name="FireRateTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

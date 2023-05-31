@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjuia56trttyj"]
+
+[ext_resource type="Script" path="res://systems/ai/enemy.gd" id="1_qblk2"]
+[ext_resource type="Texture2D" uid="uid://cqu6o1pcpns0j" path="res://icon.svg" id="2_or8u3"]
+[ext_resource type="PackedScene" uid="uid://dahtgnrmo7bhx" path="res://systems/arsenal/Weapon.tscn" id="3_13vil"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqd7o"]
+
+[node name="Enemy" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_qblk2")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gqd7o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.160001, 0.160001)
+texture = ExtResource("2_or8u3")
+
+[node name="Knockback" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Weapon" parent="." instance=ExtResource("3_13vil")]
+position = Vector2(21, -1)
+
+[connection signal="timeout" from="Knockback" to="." method="_on_knockback_timeout"]

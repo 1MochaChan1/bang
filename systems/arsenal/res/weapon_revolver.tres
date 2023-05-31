@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=5 format=3 uid="uid://dctgy1xkswteq"]
+
+[ext_resource type="Script" path="res://resources/weapon.gd" id="1_06jjl"]
+[ext_resource type="Resource" uid="uid://ds8i7pel2pjui" path="res://systems/arsenal/res/bullet_revolver.tres" id="1_6r8r3"]
+[ext_resource type="Texture2D" uid="uid://u54lqa0773sj" path="res://assets/textures/guns.png" id="3_sfo8t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sj372"]
+atlas = ExtResource("3_sfo8t")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_06jjl")
+fire_rate = 3.0
+max_ammo = 6
+bullet = ExtResource("1_6r8r3")
+reload_time = 1.5
+sprite = SubResource("AtlasTexture_sj372")

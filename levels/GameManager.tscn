@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccq73u4jmnblm"]
+
+[ext_resource type="PackedScene" uid="uid://stvj1t76dei4" path="res://systems/player/Player.tscn" id="1_bil5k"]
+[ext_resource type="PackedScene" uid="uid://bjuia56trttyj" path="res://systems/ai/Enemy.tscn" id="2_h3rv2"]
+[ext_resource type="Resource" uid="uid://d0b4c0nivpo6b" path="res://systems/arsenal/res/weapon_pistol.tres" id="4_g5ydl"]
+[ext_resource type="PackedScene" uid="uid://cbo3bjwx2yunh" path="res://systems/pickup/WeaponPickup.tscn" id="6_1pt2w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ko5jk"]
+size = Vector2(1151.5, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ww3rr"]
+size = Vector2(1151.5, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60iqh"]
+size = Vector2(444.75, 24)
+
+[node name="GameManager" type="Node2D"]
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="Obstacle" type="StaticBody2D" parent="Obstacles"]
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Obstacle"]
+position = Vector2(576.25, 570)
+shape = SubResource("RectangleShape2D_ko5jk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Obstacles/Obstacle"]
+position = Vector2(659, 333)
+scale = Vector2(-0.0321423, 1.76033)
+shape = SubResource("RectangleShape2D_ww3rr")
+
+[node name="Obstacle2" type="StaticBody2D" parent="Obstacles"]
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Obstacle2"]
+position = Vector2(272, 159)
+shape = SubResource("RectangleShape2D_60iqh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Obstacles/Obstacle2"]
+position = Vector2(895, 163)
+shape = SubResource("RectangleShape2D_60iqh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Obstacles/Obstacle2"]
+position = Vector2(561, 75)
+shape = SubResource("RectangleShape2D_60iqh")
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_bil5k")]
+position = Vector2(326, 472)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Enemy" parent="." instance=ExtResource("2_h3rv2")]
+position = Vector2(146, 461)
+
+[node name="WeaponPickup" parent="." instance=ExtResource("6_1pt2w")]
+position = Vector2(457, 461)
+
+[node name="WeaponPickup2" parent="." instance=ExtResource("6_1pt2w")]
+position = Vector2(528, 461)
+weapon_type = ExtResource("4_g5ydl")

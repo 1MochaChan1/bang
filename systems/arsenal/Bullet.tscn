@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7x7gy10ngu8f"]
+
+[ext_resource type="Script" path="res://systems/arsenal/bullet.gd" id="1_t8n8u"]
+[ext_resource type="Resource" uid="uid://cjb17g1e1sa5x" path="res://systems/arsenal/res/bullet_pistol.tres" id="2_rnn7u"]
+[ext_resource type="Texture2D" uid="uid://u54lqa0773sj" path="res://assets/textures/guns.png" id="3_g1qts"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nl43"]
+atlas = ExtResource("3_g1qts")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7hfi"]
+size = Vector2(6, 2)
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_t8n8u")
+bullet_type = ExtResource("2_rnn7u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_3nl43")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="Detector" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_y7hfi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="Collider" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_y7hfi")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
