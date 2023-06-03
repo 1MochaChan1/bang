@@ -9,6 +9,6 @@ region = Rect2(16, 16, 16, 16)
 
 [resource]
 script = ExtResource("1_bsnno")
-knockback = 780.0
-speed = 500.0
+knockback = 1000.0
+speed = 700.0
 sprite = SubResource("AtlasTexture_pc0x3")

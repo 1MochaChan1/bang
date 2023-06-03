@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Bang"
-run/main_scene="res://levels/GameManager.tscn"
+run/main_scene="res://systems/ui/menu/MainMenu.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 

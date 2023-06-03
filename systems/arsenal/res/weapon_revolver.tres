@@ -10,8 +10,8 @@ region = Rect2(0, 0, 16, 16)
 
 [resource]
 script = ExtResource("1_06jjl")
-fire_rate = 3.0
+fire_rate = 2.0
 max_ammo = 6
 bullet = ExtResource("1_6r8r3")
-reload_time = 1.5
+reload_time = 1.75
 sprite = SubResource("AtlasTexture_sj372")

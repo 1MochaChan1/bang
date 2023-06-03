@@ -12,14 +12,13 @@ var knockback:Vector2
 
 
 func _process(_delta):
-	pass
-#	weapon.shoot()
-#	if(!is_getting_knocked_back):
-#		velocity.x = SPEED
-#		velocity.y += GRAVITY * _delta
-#	else:
-#		velocity = knockback
-#	move_and_slide()
+	weapon.shoot()
+	if(!is_getting_knocked_back):
+		velocity.x = SPEED
+		velocity.y += GRAVITY * _delta
+	else:
+		velocity = knockback
+	move_and_slide()
 
 
 func add_knockback(dir:Vector2):
