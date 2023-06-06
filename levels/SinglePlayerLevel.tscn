@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccq73u4jmnblm"]
+[gd_scene load_steps=9 format=3 uid="uid://ccq73u4jmnblm"]
 
 [ext_resource type="PackedScene" uid="uid://stvj1t76dei4" path="res://systems/player/Player.tscn" id="1_bil5k"]
+[ext_resource type="Script" path="res://levels/single_player_level.gd" id="1_h4g85"]
 [ext_resource type="PackedScene" uid="uid://bjuia56trttyj" path="res://systems/ai/Enemy.tscn" id="2_h3rv2"]
 [ext_resource type="Resource" uid="uid://d0b4c0nivpo6b" path="res://systems/arsenal/res/weapon_pistol.tres" id="4_g5ydl"]
 [ext_resource type="PackedScene" uid="uid://cbo3bjwx2yunh" path="res://systems/pickup/WeaponPickup.tscn" id="6_1pt2w"]
@@ -14,7 +15,8 @@ size = Vector2(1151.5, 154)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60iqh"]
 size = Vector2(444.75, 24)
 
-[node name="GameManager" type="Node2D"]
+[node name="LevelManager" type="Node2D"]
+script = ExtResource("1_h4g85")
 
 [node name="Obstacles" type="Node" parent="."]
 

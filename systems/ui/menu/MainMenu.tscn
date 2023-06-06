@@ -1,8 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://baaqctb7xb5jx"]
+[gd_scene load_steps=3 format=3 uid="uid://baaqctb7xb5jx"]
 
 [ext_resource type="Script" path="res://systems/ui/menu/main_menu.gd" id="1_hf3ug"]
 
-[node name="Control" type="Control"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aho36"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_hf3ug")
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+position = Vector2(628, 162)
+scale = Vector2(80, 5)
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_aho36")
+
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2(396, 130)
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -15,21 +32,24 @@ offset_right = 29.0
 offset_bottom = 52.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hf3ug")
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="GridContainer" type="GridContainer" parent="Control"]
 layout_mode = 0
 offset_right = 44.0
 offset_bottom = 66.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Host" type="Button" parent="GridContainer"]
+[node name="Host" type="Button" parent="Control/GridContainer"]
 layout_mode = 2
 text = "Host"
 
-[node name="Join" type="Button" parent="GridContainer"]
+[node name="Join" type="Button" parent="Control/GridContainer"]
 layout_mode = 2
 text = "Join"
 
-[connection signal="pressed" from="GridContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="GridContainer/Join" to="." method="_on_join_pressed"]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://systems/player/Player.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="Control/GridContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Control/GridContainer/Join" to="." method="_on_join_pressed"]

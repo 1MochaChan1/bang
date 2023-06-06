@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://p4aununc68d4"]
+
+[ext_resource type="Script" path="res://systems/scene_manager/multiplayer_manager.gd" id="1_8n0tl"]
+[ext_resource type="Script" path="res://systems/scene_manager/scene_manager.gd" id="1_jtaff"]
+[ext_resource type="Script" path="res://systems/scene_manager/game_manager.gd" id="1_ycxdc"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_ycxdc")
+
+[node name="MultiplayerManager" type="Node" parent="." node_paths=PackedStringArray("scene_manager")]
+script = ExtResource("1_8n0tl")
+scene_manager = NodePath("../SceneManager")
+
+[node name="SceneManager" type="Node" parent="."]
+script = ExtResource("1_jtaff")

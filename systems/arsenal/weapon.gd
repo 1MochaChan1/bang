@@ -23,12 +23,10 @@ func _ready():
 
 func _process(_delta):
 	if(weapon_type):
-		if(!reloading):
-			$Label.text = str(weapon_type.current_ammo)
-		else:
-			$Label.text = "reloading"
-		#	if(Input.is_action_pressed("ui_accept")):
-		#		shoot()
+#		if(!reloading):
+#			$Label.text = str(weapon_type.current_ammo)
+#		else:
+#			$Label.text = "reloading"
 		if(weapon_type.current_ammo < 1 and not reloading):
 			reload()
 
@@ -69,7 +67,6 @@ func switch(new_weapon_type:Weapon):
 
 func _on_fire_rate_timer_timeout():
 	can_shoot = true
-	
 
 func _on_reload_timer_timeout():
 	can_shoot = true

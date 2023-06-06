@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdxdpisewfhne"]
+
+[ext_resource type="Script" path="res://levels/multiplayer_level.gd" id="1_6w1g1"]
+[ext_resource type="PackedScene" uid="uid://stvj1t76dei4" path="res://systems/player/Player.tscn" id="2_jgche"]
+[ext_resource type="PackedScene" uid="uid://cbo3bjwx2yunh" path="res://systems/pickup/WeaponPickup.tscn" id="4_m3rin"]
+[ext_resource type="Resource" uid="uid://d0b4c0nivpo6b" path="res://systems/arsenal/res/weapon_pistol.tres" id="5_khgw6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_crusc"]
+size = Vector2(1151.5, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aspag"]
+size = Vector2(1151.5, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0p5r6"]
+size = Vector2(444.75, 24)
+
+[node name="MultiplayerLevelManager" type="Node2D"]
+script = ExtResource("1_6w1g1")
+
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2(270, 410)
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="Obstacle" type="StaticBody2D" parent="Obstacles"]
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Obstacle"]
+position = Vector2(576.25, 570)
+shape = SubResource("RectangleShape2D_crusc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Obstacles/Obstacle"]
+position = Vector2(659, 333)
+scale = Vector2(-0.0321423, 1.76033)
+shape = SubResource("RectangleShape2D_aspag")
+
+[node name="Obstacle2" type="StaticBody2D" parent="Obstacles"]
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Obstacle2"]
+position = Vector2(272, 159)
+shape = SubResource("RectangleShape2D_0p5r6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Obstacles/Obstacle2"]
+position = Vector2(895, 163)
+shape = SubResource("RectangleShape2D_0p5r6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Obstacles/Obstacle2"]
+position = Vector2(561, 75)
+shape = SubResource("RectangleShape2D_0p5r6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WeaponPickup" parent="." instance=ExtResource("4_m3rin")]
+position = Vector2(457, 461)
+
+[node name="WeaponPickup2" parent="." instance=ExtResource("4_m3rin")]
+position = Vector2(528, 461)
+weapon_type = ExtResource("5_khgw6")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://systems/player/Player.tscn", "res://systems/pickup/WeaponPickup.tscn", "res://systems/arsenal/Bullet.tscn", "res://systems/arsenal/Weapon.tscn")
+spawn_path = NodePath("..")
+
+[node name="Player" parent="." instance=ExtResource("2_jgche")]
+position = Vector2(284, 361)

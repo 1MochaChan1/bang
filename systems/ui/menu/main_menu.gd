@@ -1,18 +1,18 @@
-extends Control
+class_name MainMenu extends CustomScene
+
+signal on_click_server_create()
+signal on_click_client_create()
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_join_pressed():
+	on_click_client_create.emit()
+#	scene_changed.emit(self.MainMenu, self.MultiplayerLevel)
 
 
 func _on_host_pressed():
-	get_tree().change_scene_to_file("res://levels/GameManager.tscn")
+	on_click_server_create.emit()
+#	scene_changed.emit(self.MainMenu, self.MultiplayerLevel)
 
-func _on_join_pressed():
-	get_tree().change_scene_to_file("res://levels/GameManager.tscn")
+
+func _on_area_2d_area_entered(area):
+	print(area)

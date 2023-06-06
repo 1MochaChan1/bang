@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://stvj1t76dei4"]
+[gd_scene load_steps=6 format=3 uid="uid://stvj1t76dei4"]
 
 [ext_resource type="Script" path="res://systems/player/player.gd" id="1_1tca5"]
 [ext_resource type="Texture2D" uid="uid://cqu6o1pcpns0j" path="res://icon.svg" id="2_c7qlk"]
@@ -6,18 +6,29 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnx5g"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qm14k"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:scale")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/sync = true
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_1tca5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_vnx5g")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3.8147e-06, 3.8147e-06)
 scale = Vector2(0.15625, 0.15625)
 texture = ExtResource("2_c7qlk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vnx5g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -31,5 +42,8 @@ position = Vector2(5, 0)
 
 [node name="KnockbackTimer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qm14k")
 
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_knockback_timer_timeout"]
