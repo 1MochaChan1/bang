@@ -17,8 +17,8 @@ size = Vector2(444.75, 24)
 [node name="MultiplayerLevelManager" type="Node2D"]
 script = ExtResource("1_6w1g1")
 
-[node name="Spawner" type="Node2D" parent="."]
-position = Vector2(270, 410)
+[node name="Spawner" type="Node2D" parent="." groups=["Player"]]
+position = Vector2(332, 402)
 
 [node name="Obstacles" type="Node" parent="."]
 

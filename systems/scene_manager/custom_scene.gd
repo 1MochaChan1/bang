@@ -1,7 +1,12 @@
 class_name CustomScene extends Node
 
-signal scene_changed(from:StringName, to:StringName, scene_data:Dictionary)
+signal on_scene_change(from:StringName, to:StringName, scene_data:Dictionary)
 
-const MainMenu:StringName="res://systems/ui/menu/MainMenu.tscn"
-const SinglePlayerLevel:StringName = "res://levels/SinglePlayerLevel.tscn"
-const MultiplayerLevel:StringName = "res://levels/MultiplayerLevel.tscn"
+const MAIN_MENU:StringName="res://systems/ui/menu/MainMenu.tscn"
+const SINGLE_PLAYER_LEVEL:StringName = "res://levels/SinglePlayerLevel.tscn"
+const MULTIPLAYER_LEVEL:StringName = "res://levels/MultiplayerLevel.tscn"
+
+var scene_data:Dictionary = {
+	GlobalConst.NETWORK_ROLE:null,
+	GlobalConst.IS_MULTIPLAYER:false,
+}

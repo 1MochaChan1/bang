@@ -8,9 +8,9 @@ const IP_ADDRESS = "localhost"
 var player_scene = preload("res://systems/player/Player.tscn") 
 var enet = ENetMultiplayerPeer.new()
 
-func _ready():
-	scene_manager.server_created.connect(create_server)
-	scene_manager.client_created.connect(create_client)
+#func _ready():
+#	scene_manager.server_created.connect(create_server)
+#	scene_manager.client_created.connect(create_client)
 
 func create_server(port:=9999):
 	enet.create_server(port)
@@ -24,8 +24,8 @@ func create_client(port:=9999):
 	multiplayer.multiplayer_peer = enet
 
 func _create_player(_id):
-	
-	var player = player_scene.instantiate()
+	var player:Player = player_scene.instantiate()
+
 	player.name = str(_id)
 	scene_manager.current_scene.add_child(player)
 	

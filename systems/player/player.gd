@@ -22,6 +22,7 @@ func _enter_tree():
 
 
 func _ready():
+	self.add_to_group("Player")
 	if(get_local_authority()):
 		weapon.connect("weapon_switched", weapon_switch)
 		$Camera2D.make_current()
