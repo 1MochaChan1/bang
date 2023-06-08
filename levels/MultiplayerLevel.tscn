@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdxdpisewfhne"]
+[gd_scene load_steps=9 format=3 uid="uid://cdxdpisewfhne"]
 
 [ext_resource type="Script" path="res://levels/multiplayer_level.gd" id="1_6w1g1"]
 [ext_resource type="PackedScene" uid="uid://stvj1t76dei4" path="res://systems/player/Player.tscn" id="2_jgche"]
 [ext_resource type="PackedScene" uid="uid://cbo3bjwx2yunh" path="res://systems/pickup/WeaponPickup.tscn" id="4_m3rin"]
+[ext_resource type="Script" path="res://levels/multi_target_cam.gd" id="5_7vup5"]
 [ext_resource type="Resource" uid="uid://d0b4c0nivpo6b" path="res://systems/arsenal/res/weapon_pistol.tres" id="5_khgw6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crusc"]
@@ -17,7 +18,7 @@ size = Vector2(444.75, 24)
 [node name="MultiplayerLevelManager" type="Node2D"]
 script = ExtResource("1_6w1g1")
 
-[node name="Spawner" type="Node2D" parent="." groups=["Player"]]
+[node name="Spawner" type="Node2D" parent="." groups=["SpawnPoint"]]
 position = Vector2(332, 402)
 
 [node name="Obstacles" type="Node" parent="."]
@@ -68,3 +69,7 @@ spawn_path = NodePath("..")
 
 [node name="Player" parent="." instance=ExtResource("2_jgche")]
 position = Vector2(284, 361)
+
+[node name="MultiTargetCam" type="Camera2D" parent="."]
+position = Vector2(578, 315)
+script = ExtResource("5_7vup5")

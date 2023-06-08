@@ -4,16 +4,17 @@ signal weapon_switched(changed_weapon_type:Weapon)
 
 @export var weapon_type:Weapon
 
+
 @onready var sprite = $Sprite2D
 @onready var fire_rate_timer = $FireRateTimer
 @onready var reload_timer = $ReloadTimer
 @onready var bullet_spawner = $BulletSpawner
 
+
 var bullet_scene = preload("res://systems/arsenal/Bullet.tscn")
 var can_shoot = true;
 var reloading = false;
 var max_ammo:int
-
 
 
 func _ready():
@@ -23,12 +24,9 @@ func _ready():
 
 func _process(_delta):
 	if(weapon_type):
-#		if(!reloading):
-#			$Label.text = str(weapon_type.current_ammo)
-#		else:
-#			$Label.text = "reloading"
 		if(weapon_type.current_ammo < 1 and not reloading):
 			reload()
+
 
 func init_stats():
 	weapon_type = weapon_type.duplicate()
@@ -37,6 +35,7 @@ func init_stats():
 	sprite.texture = weapon_type.sprite
 	max_ammo = weapon_type.max_ammo
 	weapon_type.current_ammo = weapon_type.max_ammo
+
 
 func shoot():
 	if(weapon_type):
@@ -59,6 +58,7 @@ func reload():
 	reloading = true
 	reload_timer.start()
 
+
 func switch(new_weapon_type:Weapon):
 	weapon_switched.emit(new_weapon_type)
 	weapon_type = new_weapon_type.duplicate()
@@ -67,6 +67,7 @@ func switch(new_weapon_type:Weapon):
 
 func _on_fire_rate_timer_timeout():
 	can_shoot = true
+
 
 func _on_reload_timer_timeout():
 	can_shoot = true

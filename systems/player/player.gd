@@ -3,6 +3,7 @@ class_name Player extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_IMPUSLSE = 250.0
 const GRAVITY = 400.0
+const STOP_SPEED_WEIGHT = 0.1
 
 @onready var weapon = $WeaponPos/Weapon
 @onready var knockback_timer = $KnockbackTimer
@@ -10,7 +11,7 @@ const GRAVITY = 400.0
 
 var facing_right=true;
 var is_getting_knocked_back:bool = false
-var knockback:Vector2
+var knockback_force:Vector2
 
 
 func get_local_authority() -> bool:
@@ -25,7 +26,6 @@ func _ready():
 	self.add_to_group("Player")
 	if(get_local_authority()):
 		weapon.connect("weapon_switched", weapon_switch)
-		$Camera2D.make_current()
 
 
 func _process(_delta):
@@ -43,15 +43,16 @@ func handle_input(delta):
 		velocity.y -= JUMP_IMPUSLSE
 	
 	if(Input.is_action_pressed("shoot")):
-		weapon.shoot()
+		shoot.rpc()
 	
-	if(dir!=null and !is_getting_knocked_back):
+	
+	if(dir.length() != 0 and !is_getting_knocked_back):
 		velocity.x = dir.x * SPEED
 	elif (is_getting_knocked_back):
-		velocity.x += knockback.x
+		print(knockback_force.x * delta)
+		velocity.x += knockback_force.x * delta
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
+		velocity.x = lerpf(velocity.x, 0, STOP_SPEED_WEIGHT)
 	move_and_slide()
 
 
@@ -65,18 +66,24 @@ func set_x_scale(dir:Vector2):
 		rotation_degrees = 180
 
 
+@rpc("call_local")
+func shoot():
+	weapon.shoot()
+
+
 @rpc("any_peer")
 func weapon_switch(new_weapon:Weapon):
 	weapon.weapon_type = new_weapon
 
 
-func add_knockback(dir:Vector2):
-	knockback = dir
+@rpc("call_local")
+func add_knockback(force:Vector2):
+	knockback_force = force
 	is_getting_knocked_back = true
 	knockback_timer.start()
 
 
 func _on_knockback_timer_timeout():
 	is_getting_knocked_back = false
-	knockback = Vector2.ZERO
+	knockback_force = Vector2.ZERO
 	knockback_timer.stop()

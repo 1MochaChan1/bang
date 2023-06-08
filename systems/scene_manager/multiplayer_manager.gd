@@ -25,7 +25,8 @@ func create_client(port:=9999):
 
 func _create_player(_id):
 	var player:Player = player_scene.instantiate()
-
+	var spawner = scene_manager.current_scene.get_node('Spawner').global_position
+	player.set_global_position(spawner) 
 	player.name = str(_id)
 	scene_manager.current_scene.add_child(player)
 	
